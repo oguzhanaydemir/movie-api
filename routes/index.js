@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 
 router.get("/", (req, res, next) => {
     console.log(req.app);
-    res.json({ status: 1 });
+    res.render('index');
 });
 
 router.post("/register", (req, res, next) => {
