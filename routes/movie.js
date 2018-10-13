@@ -29,23 +29,21 @@ router.get("/", (req, res, next) => {
 
 /* POST a movie */
 router.post("/", (req, res, next) => {
-  const { title, category, country, year, imdb_score } = req.body;
+  const { title, category, country, year, imdb_score, director_id } = req.body;
 
   const movie = new Movie({
     title,
     category,
     country,
     year,
-    imdb_score
+    imdb_score,
+    director_id
   });
 
   movie
     .save()
     .then(data => {
-      res.json({
-        status: 1,
-        data: [data]
-      });
+      res.json(data);
     })
     .catch(err => {
       res.json({
@@ -94,11 +92,9 @@ router.get("/:id", (req, res, next) => {
 
 /*UPDATE a movie by id*/
 router.put("/:id", (req, res, next) => {
-  Movie.findByIdAndUpdate(req.params.id, req.body)
+  Movie.findByIdAndUpdate(req.params.id, req.body, {new:true})
     .then(data => {
-      res.json({
-        data: [data]
-      });
+      res.json(data);
     })
     .catch(err => {
       console.log(err);
