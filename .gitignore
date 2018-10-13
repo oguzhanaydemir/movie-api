@@ -61,4 +61,4 @@ typings/
 .next
 
 # Web Storm directory
-.idea/
+./.idea/
